@@ -9,10 +9,11 @@ class ProjectSetupApp(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         self.title("Project Setup")
-        self.geometry("550x700")
+        self.geometry("550x650")
         self.config(bg="#05040A")
 
-        self.font = ("Dubai", 16)  # Définir une police plus lisible
+        self.font = ("Dubai", 16)
+        self.font_label = ("Roboto", 20)
 
         # Project name entry
         self.project_name_label = customtkinter.CTkLabel(
@@ -21,23 +22,26 @@ class ProjectSetupApp(customtkinter.CTk):
             bg_color="#05040A",
             fg_color="#05040A",
             text_color="white",
-            font=self.font,
+            font=self.font_label,
         )
         self.project_name_label.pack(pady=10)
 
         self.project_name_entry = customtkinter.CTkEntry(
-            self, width=300, font=self.font
+            self, width=300, font=self.font,
+            border_width=2,
+            border_color='grey',
+            bg_color="#05040A"
         )
         self.project_name_entry.pack(pady=5)
 
         # Directory selection
         self.dir_label = customtkinter.CTkLabel(
             self,
-            text="Select Directory:",
+            text="Select Directory",
             bg_color="#05040A",
             fg_color="#05040A",
             text_color="white",
-            font=self.font,
+            font=self.font_label,
         )
         self.dir_label.pack(pady=10)
 
@@ -45,7 +49,9 @@ class ProjectSetupApp(customtkinter.CTk):
             self,
             text="Browse",
             command=self.browse_directory,
-            fg_color="#4e4e4e",
+            bg_color="#05040A",
+            border_width=2,
+            fg_color="#1D1A29",
             text_color="white",
             corner_radius=10,
             font=self.font,
@@ -90,7 +96,7 @@ class ProjectSetupApp(customtkinter.CTk):
                 onvalue="on",
                 offvalue="off",
                 bg_color="#05040A",
-                fg_color="#4e4e4e",
+                fg_color="#1D1A29",
                 text_color="white",
                 font=self.font,
             ).pack(anchor="w")
@@ -100,7 +106,9 @@ class ProjectSetupApp(customtkinter.CTk):
             self,
             text="Create Project",
             command=self.create_project,
-            fg_color="#4e4e4e",
+            bg_color="#05040A",
+            border_width=2,
+            fg_color="#1D1A29",
             text_color="white",
             corner_radius=10,
             font=self.font,
