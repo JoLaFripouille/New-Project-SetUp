@@ -127,12 +127,14 @@ class ProjectSetupApp(customtkinter.CTk):
         self.preview_textbox = Text(
             self.main_frame,
             bg="#05040A",
-            fg="white",
-            font=("Courier", 12),
+            fg="#05040A",
+            height=100,
+            font=("Dubai", 14, 'bold'),
             wrap="none",
-            state="disabled"
+            state="disabled",
+            borderwidth=0
         )
-        self.preview_textbox.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+        self.preview_textbox.grid(row=0, column=1, padx=20, pady=20, sticky="nsew")
 
         self.main_frame.columnconfigure(1, weight=1)  # Make the preview expand
 
@@ -228,9 +230,9 @@ class ProjectSetupApp(customtkinter.CTk):
 
         self.preview_textbox.configure(state="disabled")
 
-        self.preview_textbox.tag_configure("project", foreground="green")
-        self.preview_textbox.tag_configure("folder", foreground="pink")
-        self.preview_textbox.tag_configure("file", foreground="violet")
+        self.preview_textbox.tag_configure("project", foreground='#FF5CE5')
+        self.preview_textbox.tag_configure("folder", foreground="#18FFBF")
+        self.preview_textbox.tag_configure("file", foreground="#9A75FF")
 
 
 if __name__ == "__main__":
