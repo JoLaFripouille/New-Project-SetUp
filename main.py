@@ -32,7 +32,7 @@ class ProjectSetupApp(customtkinter.CTk):
             border_width=2,
             border_color="grey",
             bg_color="#05040A",
-            justify= 'center'
+            justify='center'
         )
         self.project_name_entry.pack(pady=5)
 
@@ -123,18 +123,29 @@ class ProjectSetupApp(customtkinter.CTk):
             checkbox.grid(row=row, column=0, sticky="w", pady=6, padx=8)
             row += 1
 
-        # Textbox for preview
-        self.preview_textbox = Text(
+        # Scrollable frame for preview
+        self.preview_frame = customtkinter.CTkScrollableFrame(
             self.main_frame,
+            bg_color="transparent",
+            fg_color="#05040A",
+            height=360,
+            corner_radius=15,
+            border_color="#7F8AB5",
+        )
+        self.preview_frame.grid(row=0, column=1, padx=3, pady=3, sticky="nsew")
+
+        # Textbox for preview inside the scrollable frame
+        self.preview_textbox = Text(
+            self.preview_frame,
             bg="#05040A",
             fg="#05040A",
-            height=100,
+            height=15,  # Adjust height to fit the content better
             font=("Dubai", 14, 'bold'),
             wrap="none",
             state="disabled",
             borderwidth=0
         )
-        self.preview_textbox.grid(row=0, column=1, padx=20, pady=20, sticky="nsew")
+        self.preview_textbox.pack(fill="both", expand=True)
 
         self.main_frame.columnconfigure(1, weight=1)  # Make the preview expand
 
@@ -226,16 +237,14 @@ class ProjectSetupApp(customtkinter.CTk):
             if self.option_vars["tests/test_module.py"].get() == "on":
                 self.preview_textbox.insert("end", "    └── test_module.py\n", "file")
         if self.option_vars["images/"].get() == "on":
-                    self.preview_textbox.insert("end", "├── images/\n", "folder")
+            self.preview_textbox.insert("end", "├── images/\n", "folder")
 
         self.preview_textbox.configure(state="disabled")
 
-        self.preview_textbox.tag_configure("project", foreground='#FF5CE5')
-        self.preview_textbox.tag_configure("folder", foreground="#18FFBF")
-        self.preview_textbox.tag_configure("file", foreground="#9A75FF")
-
+        self.preview_textbox.tag_configure("project", foreground='#00FF00')
+        self.preview_textbox.tag_configure("folder", foreground="#FF1493")
+        self.preview_textbox.tag_configure("file", foreground="#8A2BE2")
 
 if __name__ == "__main__":
     app = ProjectSetupApp()
     app.mainloop()
-
