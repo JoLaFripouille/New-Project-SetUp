@@ -1,7 +1,8 @@
 import os
 import subprocess
 import customtkinter
-from tkinter import filedialog, messagebox, StringVar, Text
+from tkinter import filedialog, messagebox, StringVar, Text,PhotoImage
+from PIL import Image, ImageTk
 
 
 class ProjectSetupApp(customtkinter.CTk):
@@ -10,6 +11,13 @@ class ProjectSetupApp(customtkinter.CTk):
         self.title("Project Setup")
         self.geometry("550x740+15+15")
         self.config(bg="#05040A")
+        self.resizable(False, False)
+        
+        # Set window icon
+        self.iconpath = ImageTk.PhotoImage(file=os.path.join("icons","logo.png"))
+        self.wm_iconbitmap()
+        self.iconphoto(False, self.iconpath)
+        self.after(300, lambda: self.iconphoto(False, self.iconpath))
 
         self.font_label = customtkinter.CTkFont(family="Dubai", size=20)
         self.font = customtkinter.CTkFont(family="Dubai", size=16)
@@ -171,6 +179,7 @@ class ProjectSetupApp(customtkinter.CTk):
         self.create_button.pack(pady=20)
 
         self.update_preview()
+
 
     def browse_directory(self):
         directory = filedialog.askdirectory()
